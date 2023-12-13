@@ -1,0 +1,45 @@
+/*!
+ * @file i2c.ino
+ * @brief Control speech synthesis sensor via I2C, and synthetise speech 
+ * @details phenomena£ºthe speaker of the module plays English on a loop
+ * @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
+ * @license     The MIT License (MIT)
+ * @author [fengli](li.feng@dfrobot.com)
+ * @version  V1.0
+ * @date  2020-11-6
+ * @url https://github.com/DFRobot/DFRobot_SpeechSynthesis_V2
+ */
+#include "DFRobot_SpeechSynthesis_V2.h"
+DFRobot_SpeechSynthesis_I2C ss;
+void setup() {
+  Serial.begin(115200);
+  //Init speech synthesis sensor
+  ss.begin();
+  //Set voice volume to 5
+  ss.setVolume(2);
+  ss.setLanguage(ss.eEnglishl);
+  //Set playback speed to 5
+  //ss.setSpeed(5);
+  //Set tone to 5
+  //ss.setTone(5);
+  //For English, speak word 
+  //ss.setEnglishPron(ss.WORD);
+}
+
+void loop() {
+  uint8_t CMDID =69;
+  int temp = 26;
+  char strTemp[8];
+  sprintf(strTemp, "%d", temp);
+  if (CMDID == 69){
+    ss.speak(strTemp);
+  }
+  
+
+  /*Use text control identifier*/
+  //Voice volume identifier 
+  //ss.speak(F("[v3]Hello [v8]world"));
+  //Word Pronounce mode identifier 
+  //ss.speak(F("[h1]Hello [h2]world"));
+  delay(1000);
+}
