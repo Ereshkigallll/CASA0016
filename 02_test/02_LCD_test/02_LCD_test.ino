@@ -1,24 +1,25 @@
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
+#include <Wire.h>  // Include Wire library for I2C communication
+#include <LiquidCrystal_I2C.h> // Include LiquidCrystal_I2C library for LCD control
 
-// 初始化LiquidCrystal_I2C对象
-// 参数为LCD的I2C地址和列数、行数
-LiquidCrystal_I2C lcd(0x27, 16, 2); // 通常I2C地址为0x27或0x3F
+// Initialize a LiquidCrystal_I2C object
+// Parameters: I2C address of the LCD, number of columns and rows
+LiquidCrystal_I2C lcd(0x27, 16, 2); // Common I2C addresses are 0x27 or 0x3F
 
 void setup() {
-  // 初始化LCD
+  // Initialize the LCD
   lcd.init();
-  // 打开LCD背光
+  // Turn on the LCD backlight
   lcd.backlight();
 
-  // 在LCD上显示文本
-  lcd.setCursor(0, 0); // 将光标设置到第一行的开始位置
+  // Display text on the LCD
+  lcd.setCursor(0, 0); // Set the cursor to the beginning of the first line
   lcd.print("Hello, World!");
 
-  lcd.setCursor(0, 1); // 将光标设置到第二行的开始位置
+  lcd.setCursor(0, 1); // Set the cursor to the beginning of the second line
   lcd.print("LCD Test");
 }
 
 void loop() {
-  // 这里不需要任何代码
+  // No code needed here
 }
+

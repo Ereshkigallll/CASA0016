@@ -1,22 +1,29 @@
-const int redPin = 3;   // R引脚连接到数字3号引脚
-const int greenPin = 5; // G引脚连接到数字5号引脚
-const int bluePin = 6;  // B引脚连接到数字6号引脚
-const int lightSensorPin = A0; // 亮度传感器连接到A0引脚
+const int redPin = 3;   // Red LED connected to digital pin 3
+const int greenPin = 5; // Green LED connected to digital pin 5
+const int bluePin = 6;  // Blue LED connected to digital pin 6
+const int lightSensorPin = A0; // Light sensor connected to analog pin A0
 
 void setup() {
+  // Set LED pins as outputs
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
+  
+  // Initialize serial communication at 9600 baud
   Serial.begin(9600);
 }
 
 void loop() {
-  // 读取亮度值
+  // Read the light sensor value
   int sensorValue = analogRead(lightSensorPin);
-  int greenValue = map(sensorValue, 0, 500, 255, 0); // 亮度低时绿色亮度减少
-  int redValue = map(sensorValue, 0, 500, 0, 255); // 亮度低时红色亮度增加
+  // Map the sensor value to green LED brightness (dimmer as it gets darker)
+  int greenValue = map(sensorValue, 0, 500, 255, 0);
+  // Map the sensor value to red LED brightness (brighter as it gets darker)
+  int redValue = map(sensorValue, 0, 500, 0, 255);
 
-  analogWrite(greenPin, greenValue); // 设置绿色通道亮度
-  analogWrite(redPin, redValue); // 设置红色通道亮度
+  // Set the brightness of green and red LEDs
+  analogWrite(greenPin, greenValue);
+  analogWrite(redPin, redValue);
 
-  delay(100); // 短暂延时
+  // Short delay
+  delay(100);
 }
