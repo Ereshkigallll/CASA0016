@@ -87,7 +87,7 @@ This folder contains an enclosure I designed for this device. Based on testing, 
 ### 3.5 `04_pic`
 Contains some images used in this Read Me file and can be ignored.
 
-# 4. Circuits
+## 4. Circuits
 
 I'll describe the wiring in as much detail as possible since images of some of the components can't be found in Fritzing.
 
@@ -95,12 +95,12 @@ Firstly, in order for the two Arduino's to communicate, we need to connect the R
 
 Specifically, since I'm using a software serial port, I only need pin 10 of both boards to be connected, and pin 11 of both boards to be connected.
 
-## 4.1 Speech Recognition and Synthesis Part
+### 4.1 Speech Recognition and Synthesis Part
 This section contains only the speech recognition and the speech synthesis wired to the Arduino board.
 
 Since the speech recognition and speech synthesis modules use the I2C communication protocol, we only need to connect the SDA pins of the two modules to the A4 pin of the Arduino, and SCL to A5. At the same time, VCC is connected to the 5V power supply pin of Arduino, and GND is connected to the GND of Arduino.
 
-## 4.2 Another Board
+### 4.2 Another Board
 This section will contain all the remaining components connected to another Arduino board.
 
 Firstly, all modules except the OLED screen are connected to the Arduino's 5V power supply pins, and the OLED works using a 3.3V supply.
@@ -116,5 +116,5 @@ For the touch sensor, I connected the remaining unconnected pin to pin 7 on the 
 And for the brightness sensor (photoresistor), since my module includes an extra analogue-ready pin, it's only necessary to connect this pin to the Arduino's A0 pin.
 
 
-# 5. Further Improvement
+## 5. Further Improvement
 In the future, consideration may be given to redesigning the enclosure to make it take up less space. In addition to this, more interactions will be added and the creation of a graphical interface using lvgl will also be considered.
