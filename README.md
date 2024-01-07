@@ -6,6 +6,8 @@ This repository documents the code and other details of the CASA0016 personal pr
 
 If you find any problems, feel free to ask. :smiley::smiley::smiley:
 
+![Device Pic](https://github.com/Ereshkigallll/CASA0016/blob/master/04_pic/face.jpg)
+
 ## 1. Sensors And Libraries Requirements
 
 ### 1.1 Sensors
