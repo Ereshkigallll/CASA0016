@@ -116,3 +116,5 @@ For the touch sensor, I connected the remaining unconnected pin to pin 7 on the 
 And for the brightness sensor (photoresistor), since my module includes an extra analogue-ready pin, it's only necessary to connect this pin to the Arduino's A0 pin.
 
 
+# 5. Further Improvement
+In the future, consideration may be given to redesigning the enclosure to make it take up less space. In addition to this, more interactions will be added and the creation of a graphical interface using lvgl will also be considered.
