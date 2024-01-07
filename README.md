@@ -40,7 +40,7 @@ Two Arduino R3 development boards are needed for this project, one to handle spe
 
 ## 3. Files And Usage
 
-### 3.1 00_master
+### 3.1 `00_master`
 
 This code will be used on the master board, which will be fitted with an LCD screen, an OLED screen, a photoresistor, colour-changing LEDs, a touch sensor and a DHT11 temperature and humidity sensor.
 
@@ -64,7 +64,7 @@ struct SensorData {
 
 - The touch sensor adds more interactivity to the device, and after a certain length of touch, the speech synthesis module will play a random speech.
 
-### 3.2 01_slave
+### 3.2 `01_slave`
 
 This part of the code will be used on the slave board and contains mainly the logic for voice command recognition as well as speech synthesis output. The slave board will receive sensor data from the master board.
 
@@ -74,14 +74,43 @@ This part of the code will be used on the slave board and contains mainly the lo
 
 - These two modules are connected to the Arduino development board via the I2C bus.
 
-### 3.3 02_test
+### 3.3 `02_test`
 This folder contains the tests I did on each component when building this device, so if you find a problem during the reproduction process, you may want to use these files first to test your own sensors or output components to see if there are any problems.
 
 One of the files is called i2c_scanner, and this code is mainly used to determine the addresses of different devices that are connected to the same I2C bus. When you are not sure of the I2C address of your device, in addition to using this code to print the corresponding address in the serial port monitor, you can also check the technical documentation of this device to identify its I2C address.
 
-### 3.4 03_case_design
+### 3.4 `03_case_design`
 This folder contains an enclosure I designed for this device. Based on testing, this enclosure is too large, so consider reducing its size if you need to use it. This sketch can be used on a laser cutting machine.
 
-### 3.5 04_pic
+### 3.5 `04_pic`
 Contains some images used in this Read Me file and can be ignored.
+
+# 4. Circuits
+
+I'll describe the wiring in as much detail as possible since images of some of the components can't be found in Fritzing.
+
+Firstly, in order for the two Arduino's to communicate, we need to connect the RX of one board to the TX of the other, and the TX to the RX of the other, as well as making sure that the ground of both boards are connected.
+
+Specifically, since I'm using a software serial port, I only need pin 10 of both boards to be connected, and pin 11 of both boards to be connected.
+
+## 4.1 Speech Recognition and Synthesis Part
+This section contains only the speech recognition and the speech synthesis wired to the Arduino board.
+
+Since the speech recognition and speech synthesis modules use the I2C communication protocol, we only need to connect the SDA pins of the two modules to the A4 pin of the Arduino, and SCL to A5. At the same time, VCC is connected to the 5V power supply pin of Arduino, and GND is connected to the GND of Arduino.
+
+## 4.2 Another Board
+This section will contain all the remaining components connected to another Arduino board.
+
+Firstly, all modules except the OLED screen are connected to the Arduino's 5V power supply pins, and the OLED works using a 3.3V supply.
+
+Similar to the voice modules, both the LCD and OLED screens use the I2C communication protocol, so the wiring is similar to that of the voice modules, so it will not be repeated.
+
+For the DHT11 module, since I'm using a 3-pin module, I just need to connect that remaining unconnected pin to the Arduino pin 2 that I've defined as being used to receive DHT11 data.
+
+For the colour changeable LED light module, I connected the R pin to pin 5 of the Arduino and the G pin to pin 6 of the Arduino. Since I am not using the blue channel, pin B does not need to be connected.
+
+For the touch sensor, I connected the remaining unconnected pin to pin 7 on the Arduino.
+
+And for the brightness sensor (photoresistor), since my module includes an extra analogue-ready pin, it's only necessary to connect this pin to the Arduino's A0 pin.
+
 
